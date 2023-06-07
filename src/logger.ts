@@ -1,8 +1,8 @@
-interface ILogger {
+export interface Logger {
   log: (message: string, meta?: unknown) => void;
 }
 
-export class Logger implements ILogger {
+export class ConsoleLogger implements Logger {
   private readonly prefix?: string;
 
   public constructor(name?: string) {

@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { ObjectId } from "mongodb";
 import { setTimeout } from "timers/promises";
-import { Logger } from "../logger";
+import { ConsoleLogger, Logger } from "../logger";
 import { Customer } from "../models/customer.model";
 import { CustomersRepository } from "../repositories/customers.repository";
 import { Utils } from "../utils";
@@ -13,7 +13,7 @@ export class GeneratorService {
 
   public constructor() {
     this.repository = new CustomersRepository();
-    this.logger = new Logger("Customer Generator");
+    this.logger = new ConsoleLogger("Customer Generator");
   }
 
   public async start(): Promise<void> {

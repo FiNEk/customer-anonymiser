@@ -1,5 +1,5 @@
 import { Collection, MongoClient } from "mongodb";
-import { Logger } from "../logger";
+import { ConsoleLogger, Logger } from "../logger";
 import { Customer } from "../models/customer.model";
 
 export class MongoService {
@@ -14,7 +14,7 @@ export class MongoService {
 
     this.client = new MongoClient(process.env.DB_URI);
     this.dbName = "test";
-    this.logger = new Logger("MongoDB");
+    this.logger = new ConsoleLogger("MongoDB");
   }
 
   public static getInstance(): MongoService {

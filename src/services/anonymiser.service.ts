@@ -5,7 +5,7 @@ import {
   ChangeStreamUpdateDocument,
   ObjectId,
 } from "mongodb";
-import { Logger } from "../logger";
+import { ConsoleLogger, Logger } from "../logger";
 import { Customer } from "../models/customer.model";
 import { CustomersAnonymisedRepository } from "../repositories/customers-anonymised.repository";
 import { MongoService } from "./mongo.service";
@@ -28,7 +28,7 @@ export class AnonymiserService {
   public constructor() {
     this.mongoService = MongoService.getInstance();
     this.repository = new CustomersAnonymisedRepository();
-    this.logger = new Logger("Anonymiser");
+    this.logger = new ConsoleLogger("Anonymiser");
   }
 
   public async fullReindex(): Promise<void> {
