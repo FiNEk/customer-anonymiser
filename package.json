@@ -1,0 +1,20 @@
+{
+  "name": "fundraiseup-test",
+  "version": "1.0.0",
+  "author": "Denis Anashkin <fnk007@yandex.ru>",
+  "scripts": {
+    "build": "rm -rf ./dist || true && tsc",
+    "start:app": "npm run build && node ./dist/app.js",
+    "start:sync": "npm run build && node ./dist/sync.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.2",
+    "dotenv": "^16.1.4",
+    "mongodb": "^5.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "typescript": "^5.1.3"
+  }
+}
