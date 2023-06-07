@@ -9,7 +9,7 @@ export class CustomersAnonymisedRepository {
     this.collection = MongoService.getInstance().customersAnonymized;
   }
 
-  public async upsert(customers: Partial<Customer>[]): Promise<void> {
+  public async upsert(customers: Customer[]): Promise<void> {
     const bulkOps: AnyBulkWriteOperation<Customer>[] = customers.map(
       (customer) => ({
         updateOne: {
