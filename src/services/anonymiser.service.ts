@@ -1,14 +1,14 @@
-import { Logger } from "../logger";
 import crypto from "crypto";
-import { MongoService } from "./mongo.service";
-import { Customer } from "../models/customer.model";
-import { CustomersAnonymisedRepository } from "../repositories/customers-anonymised.repository";
 import {
   ChangeStream,
   ChangeStreamInsertDocument,
   ChangeStreamUpdateDocument,
   ObjectId,
 } from "mongodb";
+import { Logger } from "../logger";
+import { Customer } from "../models/customer.model";
+import { CustomersAnonymisedRepository } from "../repositories/customers-anonymised.repository";
+import { MongoService } from "./mongo.service";
 
 type UpsertChangeStream = ChangeStream<
   Customer,

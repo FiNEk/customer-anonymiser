@@ -1,6 +1,6 @@
 import { config } from "dotenv";
-import { MongoService } from "./services/mongo.service";
 import { AnonymiserService } from "./services/anonymiser.service";
+import { MongoService } from "./services/mongo.service";
 
 async function main() {
   config();

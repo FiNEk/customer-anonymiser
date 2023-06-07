@@ -1,5 +1,5 @@
-import { Logger } from "../logger";
 import { Collection, MongoClient } from "mongodb";
+import { Logger } from "../logger";
 import { Customer } from "../models/customer.model";
 
 export class MongoService {

@@ -1,10 +1,10 @@
-import { Logger } from "../logger";
-import { setTimeout } from "timers/promises";
-import { CustomersRepository } from "../repositories/customers.repository";
-import { Utils } from "../utils";
 import { faker } from "@faker-js/faker";
 import { ObjectId } from "mongodb";
+import { setTimeout } from "timers/promises";
+import { Logger } from "../logger";
 import { Customer } from "../models/customer.model";
+import { CustomersRepository } from "../repositories/customers.repository";
+import { Utils } from "../utils";
 
 export class GeneratorService {
   private static readonly INTERVAL_MS = 200;
