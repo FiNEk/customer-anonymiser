@@ -11,20 +11,11 @@
 
 ## Установка
 
-1. Clone repo.
-
 ```bash
 git clone https://github.com/FiNEk/customer-anonymiser
-```
-
-2. Install deps.
-
-```bash
 cd customer-anonymiser
 npm install
 ```
-
-3. Enviroment.
 
 Для работы приложения в окружении должна быть указана переменная `DB_URI`.
 
