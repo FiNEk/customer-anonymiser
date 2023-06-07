@@ -8,6 +8,8 @@ export class ConsoleLogger implements Logger {
   public constructor(name?: string) {
     if (name) {
       this.prefix = `[${name}]:`;
+    } else {
+      this.prefix = ":";
     }
   }
 
