@@ -14,13 +14,13 @@
 1. Clone repo.
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/FiNEk/customer-anonymiser
 ```
 
 2. Install deps.
 
 ```bash
-cd your-repo-name
+cd customer-anonymiser
 npm install
 ```
 
