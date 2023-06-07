@@ -1,7 +1,6 @@
-import { AnyBulkWriteOperation, Collection, ObjectId } from "mongodb";
+import { AnyBulkWriteOperation, Collection } from "mongodb";
 import { Customer } from "../models/customer.model";
 import { MongoService } from "../services/mongo.service";
-import { faker } from "@faker-js/faker";
 
 export class CustomersRepository {
   public readonly collection: Collection<Customer>;
@@ -21,23 +20,5 @@ export class CustomersRepository {
       })
     );
     await this.collection.bulkWrite(bulkOps);
-  }
-
-  public static generateCustomer(): Customer {
-    return {
-      _id: new ObjectId(),
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      email: faker.internet.email(),
-      address: {
-        line1: faker.location.streetAddress(),
-        line2: faker.location.secondaryAddress(),
-        postcode: faker.location.zipCode(),
-        city: faker.location.city(),
-        state: faker.location.state(),
-        country: faker.location.country(),
-      },
-      createdAt: faker.date.past(),
-    };
   }
 }
