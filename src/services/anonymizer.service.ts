@@ -7,7 +7,7 @@ import {
 } from "mongodb";
 import { ConsoleLogger, Logger } from "../logger";
 import { Customer } from "../models/customer.model";
-import { CustomersAnonymisedRepository } from "../repositories/customers-anonymised.repository";
+import { CustomersAnonymizedRepository } from "../repositories/customers-anonymized.repository";
 import { MongoService } from "./mongo.service";
 
 type UpsertChangeStream = ChangeStream<
@@ -15,19 +15,19 @@ type UpsertChangeStream = ChangeStream<
   ChangeStreamInsertDocument<Customer> | ChangeStreamUpdateDocument<Customer>
 >;
 
-export class AnonymiserService {
+export class AnonymizerService {
   private static readonly FLUSH_TIMEOUT_MS = 1000; // 1 sec
   private static readonly CURSOR_ID = new ObjectId("000000000000000000000000");
 
   private readonly logger: Logger;
   private readonly mongoService: MongoService;
-  private readonly repository: CustomersAnonymisedRepository;
+  private readonly repository: CustomersAnonymizedRepository;
   private buffer: Customer[] = [];
   private resumeToken?: unknown;
 
   public constructor() {
     this.mongoService = MongoService.getInstance();
-    this.repository = new CustomersAnonymisedRepository();
+    this.repository = new CustomersAnonymizedRepository();
     this.logger = new ConsoleLogger("Anonymiser");
   }
 
@@ -53,7 +53,7 @@ export class AnonymiserService {
 
     setInterval(async () => {
       await this.flushBuffer();
-    }, AnonymiserService.FLUSH_TIMEOUT_MS);
+    }, AnonymizerService.FLUSH_TIMEOUT_MS);
 
     for await (const customer of anonymiserStream) {
       this.buffer.push(customer);
@@ -94,7 +94,7 @@ export class AnonymiserService {
   private async updateResumeToken(): Promise<void> {
     if (this.resumeToken) {
       await this.mongoService.anonymizerCursor.updateOne(
-        { _id: AnonymiserService.CURSOR_ID },
+        { _id: AnonymizerService.CURSOR_ID },
         { $set: this.resumeToken },
         { upsert: true }
       );
@@ -104,7 +104,7 @@ export class AnonymiserService {
   private async getResumeToken(): Promise<void> {
     this.logger.log("Getting resume token...");
     const resumeToken = await this.mongoService.anonymizerCursor.findOne({
-      _id: AnonymiserService.CURSOR_ID,
+      _id: AnonymizerService.CURSOR_ID,
     });
     if (resumeToken) {
       this.resumeToken = resumeToken;

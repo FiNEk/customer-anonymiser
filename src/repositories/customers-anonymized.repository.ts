@@ -2,7 +2,7 @@ import { AnyBulkWriteOperation, Collection } from "mongodb";
 import { Customer } from "../models/customer.model";
 import { MongoService } from "../services/mongo.service";
 
-export class CustomersAnonymisedRepository {
+export class CustomersAnonymizedRepository {
   public readonly collection: Collection<Customer>;
 
   public constructor() {
